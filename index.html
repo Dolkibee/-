@@ -1,3 +1,5 @@
+Вот полный, очищенный и полностью готовый HTML-код вашего сайта с новым названием нижнего скриншота:
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -31,17 +33,42 @@
 
         /* Применение анимации к картинкам флага и нижнего изображения */
         .animated-img {
-            animation: goldGlow 3s infinite ease-in-out; /* Постоянное мягкое свечение */
+            animation: goldGlow 3s infinite ease-in-out;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
             cursor: pointer;
         }
         
-        /* Эффект при наведении курсора: увеличение и усиление сияния */
         .animated-img:hover {
-            animation: none; /* Останавливаем пульсацию при наведении, чтобы включить максимальный фокус */
+            animation: none;
             transform: scale(1.04);
             border-color: #FFFFFF !important;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9) !important; /* Мощный золотой взрыв */
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9) !important;
+        }
+
+        /* Стили для карточек командного состава */
+        .officer-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #FFD700;
+            border-radius: 12px;
+            padding: 15px;
+            width: 180px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .officer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            border-color: #FFF700;
+        }
+        .officer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #FFD700;
+            background-color: #222;
+            margin-bottom: 10px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -141,13 +168,40 @@
         <p style="margin-top: 20px; text-align: center; color: #666; font-style: italic;">По вопросам писать тем, кто вас пригласил</p>
     </div>
 
+    <!-- БЛОК: ШТАБ КОМАНДОВАНИЯ СНИЗУ -->
+    <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin-top: 40px;">Штаб Командования</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin: 20px auto; padding: 10px;">
+        
+        <!-- Карточка 1 -->
+        <div class="officer-card">
+            <img src="avatar1.png" alt="Epix" class="officer-avatar" onerror="this.src='https://roblox.com'">
+            <div style="font-weight: bold; color: #FFD700; font-size: 16px;">@Epix</div>
+            <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Офицер Штаба</div>
+        </div>
+
+        <!-- Карточка 2 -->
+        <div class="officer-card">
+            <img src="avatar2.png" alt="couiuy11" class="officer-avatar" onerror="this.src='https://roblox.com'">
+            <div style="font-weight: bold; color: #FFD700; font-size: 16px;">@couiuy11</div>
+            <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Офицер Приемной</div>
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="officer-card">
+            <img src="avatar3.png" alt="Dolki_bee" class="officer-avatar" onerror="this.src='https://roblox.com'">
+            <div style="font-weight: bold; color: #FFD700; font-size: 16px;">Dolki_bee</div>
+            <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Создатель сайта</div>
+        </div>
+
+    </div>
+
     <!-- Копирайт -->
     <div style="position: fixed; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.8); color: #FFD700; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border: 1px solid #FFD700; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1000;">
         сделан сайт Dolki_bee
     </div>
 
-    <!-- Нижнее изображение -->
-    <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Изображение" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
+    <!-- НОВОЕ НИЖНЕЕ ИЗОБРАЖЕНИЕ (С АНИМАЦИЕЙ) -->
+    <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Скриншот игры" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
 
     <script>
         function startSite() {
@@ -164,3 +218,5 @@
     </script>
 </body>
 </html>
+
+
