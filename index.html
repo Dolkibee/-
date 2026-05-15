@@ -5,8 +5,7 @@
     <title>Лейб-Гвардия Великого Донского Войска</title>
 </head>
 <body style="background: linear-gradient(to bottom, #87CEEB, #FFFFFF); min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; padding: 20px; padding-bottom: 60px;">
-
-    <!-- Экран приветствия для автозапуска музыки -->
+    
     <div id="welcome-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; color: white;">
         <h1>Лейб-Гвардия Великого Донского Войска</h1>
         <button onclick="startSite()" style="padding: 15px 40px; font-size: 20px; cursor: pointer; background: #5865F2; color: white; border: none; border-radius: 10px; font-weight: bold; box-shadow: 0 0 20px rgba(88,101,242,0.5);">Войти на сайт</button>
@@ -28,7 +27,6 @@
     <h2 style="color: #333;">Как вступить к нам</h2>
     <p>Перейти по ссылкам ниже:</p>
 
-    <!-- ССЫЛКИ ROBLOX И DISCORD -->
     <a href="https://www.roblox.com/share/g/35943186" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #00A2FF; color: white; text-decoration: none; border-radius: 8px; margin: 5px; min-width: 180px;">
         <span style="display: block; font-weight: bold;">Roblox Группа Донской Армии</span>
         <span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span>
@@ -38,8 +36,7 @@
         <span style="display: block; font-weight: bold;">Roblox Группа ВСЮР </span>
         <span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span>
     </a>
-
-    <!-- ТРЕТЬЯ КНОПКА ТЕПЕРЬ ВЕДЕТ НА DISCORD -->
+    
     <a href="https://discord.gg/fNkzbEXrsd" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #5865F2; color: white; text-decoration: none; border-radius: 8px; margin: 5px; min-width: 180px;">
         <span style="display: block; font-weight: bold;">Наш Discord Донская Армия</span>
         <span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span>
@@ -80,7 +77,7 @@
         }
 
         function copyAnketa() {
-            // Теперь скрипт копирует именно тот текст, который отображается на экране
+
             const text = document.getElementById("anketa-text").innerText;
             navigator.clipboard.writeText(text);
             alert("Анкета скопирована!");
