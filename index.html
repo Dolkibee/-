@@ -28,7 +28,7 @@
     <h2 style="color: #333;">Как вступить к нам</h2>
     <p>Перейти по ссылкам ниже:</p>
 
-    <!-- ИСПРАВЛЕННЫЕ ССЫЛКИ ROBLOX -->
+    <!-- ССЫЛКИ ROBLOX И DISCORD -->
     <a href="https://www.roblox.com/share/g/35943186" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #00A2FF; color: white; text-decoration: none; border-radius: 8px; margin: 5px; min-width: 180px;">
         <span style="display: block; font-weight: bold;">Roblox Группа 1</span>
         <span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span>
@@ -39,14 +39,15 @@
         <span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span>
     </a>
 
-    <a href="https://www.roblox.com/share/g/35953705" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #00A2FF; color: white; text-decoration: none; border-radius: 8px; margin: 5px; min-width: 180px;">
-        <span style="display: block; font-weight: bold;">Roblox Группа 3</span>
+    <!-- ТРЕТЬЯ КНОПКА ТЕПЕРЬ ВЕДЕТ НА DISCORD -->
+    <a href="https://discord.gg/fNkzbEXrsd" target="_blank" style="display: inline-block; padding: 12px 20px; background-color: #5865F2; color: white; text-decoration: none; border-radius: 8px; margin: 5px; min-width: 180px;">
+        <span style="display: block; font-weight: bold;">Наш Discord (резерв)</span>
         <span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span>
     </a>
 
     <br>
 
-    <a href="https://discord.gg/bq8g5Wwz2" target="_blank" style="display: inline-block; padding: 15px 25px; background-color: #5865F2; color: white; text-decoration: none; border-radius: 8px; margin: 15px; min-width: 200px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    <a href="https://discord.gg/wFvD92TUzM" target="_blank" style="display: inline-block; padding: 15px 25px; background-color: #5865F2; color: white; text-decoration: none; border-radius: 8px; margin: 15px; min-width: 200px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
         <span style="display: block; font-weight: bold; font-size: 18px;">Наш Discord</span>
         <span style="font-size: 12px; opacity: 0.9;">(кликабельно)</span>
     </a>
@@ -54,17 +55,15 @@
     <div style="background: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 30px auto; padding: 20px; border-radius: 15px; text-align: left; border: 1px solid #ccc; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
         <h3 style="margin-top: 0; text-align: center;">Анкета для вступления</h3>
         <p>Далее мы заполняем анкету, пример:</p>
-        <div id="anketa-text">
-           Ваш ник в рб (юз) :
+        <div id="anketa-text" style="white-space: pre-line;">Ваш ник в рб (юз) :
 Готовы ли вы активить на постоянной основе?
 Готовы ли вы быть верным Всевеликому Войску Донскому до самого конца? :
 Какое у вас устройство:
 Есть ли у вас микрофон:
 Состояли/состоите  ли вы в похожих фракциях?:
 зашли ли вы в группы? (И В ДОНСКОЕ ВОЙСКО И ВО ВСЮР) скрин с подтверждением)
-Как вы о нас узнали о нас: случился крах кубанской армии и был вынужден пойти за бывшим атаманом
-Пинг офицера: @Epix (@couiuy11)
-        </div>
+Как вы о нас узнали о нас:
+Пинг офицера: @Epix (@couiuy11)</div>
         <button onclick="copyAnketa()" style="margin-top: 15px; width: 100%; padding: 10px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold;">Скопировать анкету</button>
         <p style="margin-top: 20px; text-align: center; color: #555; font-style: italic;">По вопросам писать тем, кто вас пригласил</p>
     </div>
@@ -81,7 +80,8 @@
         }
 
         function copyAnketa() {
-            const text = `1. Ваш ЮЗ в РБ:\n2. Кто вас пригласил:\n3. В какое формирование вы хотели бы вступить? уманцы\n4. Ваш возраст?\n5. Как вы бы оценили свою активность?\n6. Подали ли вы заявки в РБ группы?\nПинг Принимателя Анкет:`;
+            // Теперь скрипт копирует именно тот текст, который отображается на экране
+            const text = document.getElementById("anketa-text").innerText;
             navigator.clipboard.writeText(text);
             alert("Анкета скопирована!");
         }
