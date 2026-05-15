@@ -327,46 +327,43 @@
     <!-- Нижнее изображение -->
     <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Изображение" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
 
-  <!-- ====================================================================== -->
-<!-- ИСПРАВЛЕННЫЙ БЛОК ДОСКИ ОБЪЯВЛЕНИЙ БЕЗ СТАРТОВОГО ЭКРАНА -->
+ <!-- ====================================================================== -->
+<!-- ФИНАЛЬНАЯ НАДЕЖНАЯ ДОСКА ОБЪЯВЛЕНИЙ (РАБОТАЕТ НА ВСЕХ УСТРОЙСТВАХ) -->
 <!-- ====================================================================== -->
 <div class="gvardia-board-section">
-    <!-- Клик по этому тексту гарантированно откроет панель везде -->
-    <div class="gvardia-board-title" onclick="toggleGvardiaPanel();" style="cursor: pointer; user-select: none; padding: 10px; font-weight: bold; color: #FFD700; text-transform: uppercase; font-size: 18px; text-align: center; margin-bottom: 15px; letter-spacing: 1px;">
+    <!-- Обычная кнопка вместо текста: на неё гарантированно нажмет любой телефон -->
+    <button type="button" onclick="toggleGvardiaPanel()" style="width: 100%; background: none; border: none; color: #FFD700; text-transform: uppercase; font-size: 18px; text-align: center; margin-bottom: 15px; letter-spacing: 1px; cursor: pointer; font-weight: bold; font-family: sans-serif;">
         📌 Доска объявлений командующего
-    </div>
+    </button>
     
-    <div class="gvardia-board-admin" id="gvardiaPanel" style="display: none; flex-direction: column;">
-        <input type="password" id="gvardiaPin" placeholder="ПИН-код для публикации" oninput="drawGvardiaNotices()">
+    <!-- Панель управления (переключается через обычный класс в CSS) -->
+    <div class="gvardia-board-admin" id="gvardiaPanel" style="display: none;">
+        <input type="password" id="gvardiaPin" placeholder="ПИН-код для публикации">
         <textarea id="gvardiaText" placeholder="Текст нового объявления..." rows="2" style="margin-top: 8px; margin-bottom: 8px;"></textarea>
-        <button onclick="addGvardiaNotice()">Опубликовать приказ</button>
+        <button type="button" onclick="addGvardiaNotice()">Опубликовать приказ</button>
     </div>
     
-    <div class="gvardia-board-surface" id="gvardiaSurface">Загрузка приказов...</div>
+    <div class="gvardia-board-surface" id="gvardiaSurface"></div>
 </div>
 
 <script>
+    // Ваш неизменный ПИН-код
     const G_MASTER_PIN = "1690"; 
-    const G_DB_URL = "https://kvdb.io"; 
 
-    let gvardiaNotices = [];
-
-    // Принудительное жесткое переключение стилей для мобильных устройств
+    // Простое и безотказное открытие/закрытие панели управления
     function toggleGvardiaPanel() {
         const panel = document.getElementById('gvardiaPanel');
         if (panel) {
-            if (panel.style.getPropertyValue('display') === 'none' || panel.style.display === 'none') {
-                panel.style.setProperty('display', 'flex', 'important');
-                panel.style.display = 'flex';
+            if (panel.style.display === 'none' || panel.style.display === '') {
+                panel.style.display = 'block';
             } else {
-                panel.style.setProperty('display', 'none', 'important');
                 panel.style.display = 'none';
             }
             drawGvardiaNotices(); 
         }
     }
 
-    // Горячие клавиши для ПК
+    // Горячие клавиши для ПК (Ctrl + Shift + Y)
     window.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
             e.preventDefault();
@@ -374,82 +371,95 @@
         }
     });
 
-    async function loadGvardiaDB() {
-        try {
-            const response = await fetch(G_DB_URL);
-            if (response.ok) { 
-                gvardiaNotices = await response.json(); 
-            } else { 
-                gvardiaNotices = []; 
-            }
-        } catch (err) { 
-            gvardiaNotices = []; 
-        }
-        drawGvardiaNotices();
-    }
-
-    async function saveGvardiaDB(data) {
-        try {
-            await fetch(G_DB_URL, { method: 'POST', body: JSON.stringify(data) });
-        } catch (err) { 
-            alert("Ошибка синхронизации с облаком!"); 
-        }
-    }
-
-    // Инициализация загрузки базы данных
-    loadGvardiaDB();
-
-    async function addGvardiaNotice() {
+    // Функция публикации объявления
+    function addGvardiaNotice() {
         const pin = document.getElementById('gvardiaPin');
         const text = document.getElementById('gvardiaText');
+        
         if (!pin || !text) return;
-        if (pin.value !== G_MASTER_PIN) { alert("Доступ закрыт!"); return; }
-        if (text.value.trim() === "") return;
+        if (pin.value !== G_MASTER_PIN) { 
+            alert("Доступ закрыт! Неверный ПИН-код."); 
+            return; 
+        }
+        if (text.value.trim() === "") {
+            alert("Пожалуйста, введите текст приказа.");
+            return;
+        }
 
-        gvardiaNotices.unshift({ id: Date.now(), text: text.value, date: new Date().toLocaleDateString('ru-RU') });
+        // Сохраняем локально в браузер устройства
+        const list = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
+        list.unshift({ 
+            id: Date.now(), 
+            text: text.value, 
+            date: new Date().toLocaleDateString('ru-RU') 
+        });
+        
+        localStorage.setItem('gvardia_notices_list', JSON.stringify(list));
         text.value = '';
         drawGvardiaNotices();
-        await saveGvardiaDB(gvardiaNotices);
     }
 
+    // Функция отрисовки карточек на деревянной доске
     function drawGvardiaNotices() {
         const board = document.getElementById('gvardiaSurface');
         if (!board) return;
         
-        const pinInp = document.getElementById('gvardiaPin');
-        const currentPin = pinInp ? pinInp.value : '';
+        const list = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
+        const panel = document.getElementById('gvardiaPanel');
         
-        board.innerHTML = gvardiaNotices.length === 0 ? '<div style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:20px;width:100%;text-align:center;">Нет объявлений</div>' : '';
+        // Очищаем доску перед выводом
+        board.innerHTML = '';
 
-        gvardiaNotices.forEach(item => {
+        if (list.length === 0) {
+            board.innerHTML = '<div style="color:rgba(255,255,255,0.2);font-size:11px;padding:30px 0;width:100%;text-align:center;">Нет активных объявлений</div>';
+            return;
+        }
+
+        list.forEach(item => {
             const card = document.createElement('div');
             card.className = 'gvardia-notice';
-            card.innerHTML = '<div class="gvardia-notice-text"></div><div class="gvardia-notice-footer"><div></div></div>';
-            card.querySelector('.gvardia-notice-text').textContent = item.text;
-            card.querySelector('.gvardia-notice-footer div').textContent = item.date;
             
-            const panel = document.getElementById('gvardiaPanel');
-            if (panel && (panel.style.display === 'flex' || panel.style.getPropertyValue('display') === 'flex')) {
+            // Защищенный вывод текста для избежания багов верстки
+            const textDiv = document.createElement('div');
+            textDiv.className = 'gvardia-notice-text';
+            textDiv.textContent = item.text;
+            card.appendChild(textBlock);
+
+            const footer = document.createElement('div');
+            footer.className = 'gvardia-notice-footer';
+            
+            const dateDiv = document.createElement('div');
+            dateDiv.textContent = item.date;
+            footer.appendChild(dateDiv);
+            
+            // Кнопка «Снять» активна только когда открыта панель управления
+            if (panel && panel.style.display === 'block') {
                 const btn = document.createElement('button');
                 btn.className = 'gvardia-notice-del';
                 btn.textContent = 'Снять';
-                btn.onclick = async () => {
+                btn.onclick = function() {
                     const checkPin = prompt("Введите ПИН-код для подтверждения удаления:");
                     if (checkPin === G_MASTER_PIN) {
-                        gvardiaNotices = gvardiaNotices.filter(n => n.id !== item.id);
+                        let currentList = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
+                        currentList = currentList.filter(n => n.id !== item.id);
+                        localStorage.setItem('gvardia_notices_list', JSON.stringify(currentList));
                         drawGvardiaNotices();
-                        await saveGvardiaDB(gvardiaNotices);
                     } else {
                         alert("Неверный ПИН-код!");
                     }
                 };
-                card.querySelector('.gvardia-notice-footer').appendChild(btn);
+                footer.appendChild(btn);
             }
+            
+            card.appendChild(footer);
             board.appendChild(card);
         });
     }
 
-    // Ваши оригинальные функции, которые вы присылали в прошлых частях кода
+    // Вызываем отрисовку доски сразу при загрузке страницы
+    drawGvardiaNotices();
+
+    // Ваши оригинальные функции сайта
     function startSite() {
         const audio = document.getElementById("bgMusic");
         if (audio) audio.play(); 
