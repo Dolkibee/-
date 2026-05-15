@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Лейб-Гвардия Великого Донского Войска</title>
     <style>
-        /* Стили для плавного увеличения кнопок при наведении */
+        /* ВАШИ ОРИГИНАЛЬНЫЕ СТИЛИ */
         .btn-link {
             transition: transform 0.2s ease, box-shadow 0.2s ease !important;
         }
@@ -13,23 +13,12 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.5) !important;
         }
 
-        /* Создание эффекта постоянной пульсации золотого свечения */
         @keyframes goldGlow {
-            0% {
-                box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-                border-color: #FFD700;
-            }
-            50% {
-                box-shadow: 0 4px 25px rgba(255, 215, 0, 0.6);
-                border-color: #FFF700;
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-                border-color: #FFD700;
-            }
+            0% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); border-color: #FFD700; }
+            50% { box-shadow: 0 4px 25px rgba(255, 215, 0, 0.6); border-color: #FFF700; }
+            100% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3); border-color: #FFD700; }
         }
 
-        /* Применение анимации к картинкам флага и нижнего изображения */
         .animated-img {
             animation: goldGlow 3s infinite ease-in-out;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
@@ -43,7 +32,6 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.9) !important; 
         }
 
-        /* Стили для карточек командного состава */
         .officer-card {
             background: rgba(0, 0, 0, 0.6);
             border: 2px solid #FFD700;
@@ -69,59 +57,8 @@
             object-fit: cover;
         }
 
-        /* Изолированные стили деревянной доски объявлений */
-        .gvardia-board-section {
-            max-width: 600px;
-            width: 90%;
-            margin: 50px auto 20px auto;
-            font-family: 'Segoe UI', sans-serif;
-            box-sizing: border-box;
-            clear: both;
-        }
-        .gvardia-board-title {
-            color: #FFD700;
-            text-transform: uppercase;
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            user-select: none;
-            -webkit-user-select: none;
-            font-weight: bold;
-        }
-        .gvardia-board-admin {
-            background: rgba(0, 0, 0, 0.95);
-            border: 2px solid #ff3333;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            display: none; 
-            flex-direction: column;
-            gap: 8px;
-        }
-        .gvardia-board-admin input, .gvardia-board-admin textarea {
-            background: #111;
-            border: 1px solid #444;
-            color: #fff;
-            padding: 8px;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
-            width: 100%;
-        }
-        .gvardia-board-admin button {
-            background: #ff3333;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-            text-transform: uppercase;
-            width: 100%;
-        }
+        /* СТИЛИ ДОСКИ (Изолированные) */
+        .gvardia-board-section { max-width: 600px; width: 90%; margin: 50px auto; font-family: 'Segoe UI', sans-serif; }
         .gvardia-board-surface {
             background-color: #24140a;
             background-image: linear-gradient(90deg, transparent 49%, rgba(0,0,0,0.4) 50%, transparent 51%), linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
@@ -131,160 +68,74 @@
             border-radius: 4px;
             min-height: 200px;
             padding: 20px;
-            box-sizing: border-box;
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             justify-content: center;
-            align-content: flex-start;
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
         .gvardia-notice {
-            background: #FFD700;
-            color: #000 !important;
-            padding: 12px;
-            width: 160px;
-            min-height: 140px;
-            box-sizing: border-box;
-            border-left: 4px solid #ff3333;
-            transform: rotate(1deg);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+            background: #FFD700; color: #000; padding: 12px; width: 160px; min-height: 140px;
+            border-left: 4px solid #ff3333; transform: rotate(1deg); position: relative;
+            display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.6); font-weight: bold;
         }
-        .gvardia-notice:nth-child(even) {
-            background: #ff3333;
-            color: #fff !important;
-            border-left: 4px solid #FFD700;
-            transform: rotate(-1deg);
+        .gvardia-notice:nth-child(even) { background: #ff3333; color: #fff; border-left: 4px solid #FFD700; transform: rotate(-1deg); }
+        .gvardia-notice-text { font-size: 13px; text-align: left; line-height: 1.3; white-space: pre-wrap; }
+        .gvardia-notice-footer { display: flex; justify-content: space-between; align-items: center; font-size: 9px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 4px; }
+        .gvardia-notice-del { background: #000; color: #fff; border: none; padding: 2px 5px; cursor: pointer; font-size: 9px; }
+        
+        #gvardiaPanel {
+            background: rgba(0, 0, 0, 0.95); border: 2px solid #ff3333; border-radius: 8px;
+            padding: 12px; margin-bottom: 20px; display: none; flex-direction: column; gap: 8px;
         }
-        .gvardia-notice::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 8px;
-            background: #111;
-            border-radius: 50%;
-        }
-        .gvardia-notice-text {
-            font-size: 13px;
-            font-weight: bold;
-            word-break: break-word;
-            white-space: pre-wrap;
-            text-align: left;
-            line-height: 1.3;
-        }
-        .gvardia-notice-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 9px;
-            margin-top: 8px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            padding-top: 4px;
-        }
-        .gvardia-notice:nth-child(even) .gvardia-notice-footer {
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        .gvardia-notice-del {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 2px 5px;
-            cursor: pointer;
-            border-radius: 2px;
-            font-size: 9px;
-        }
+        #gvardiaPanel input, #gvardiaPanel textarea { background: #111; border: 1px solid #444; color: #fff; padding: 8px; }
+        #gvardiaPanel button { background: #ff3333; color: #fff; border: none; padding: 10px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
-<body style="background: radial-gradient(circle, #8B0000 0%, #3A0000 100%); min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; padding: 20px; padding-top: 55px; padding-bottom: 60px; color: #FFFFFF;">
-    
-    <!-- БЕГУЩАЯ СТРОКА НОВОСТЕЙ (В самом верху страницы) -->
-    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #4A0000; border-bottom: 2px solid #FFD700; padding: 6px 0; font-weight: bold; color: #FFD700; font-size: 14px; z-index: 9999; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
-        <marquee scrollamount="5" behavior="scroll" direction="left">
-            [НОВОСТИ ВОЙСКА]: Открыт official наборы в Лейб-Гвардию! 20.05.2026 18:00 по мск будет проведен ивент "Знакомство С Казаками" в нашем дс канале Лейб Гвардии
-        </marquee>
+<body style="background: radial-gradient(circle, #8B0000 0%, #3A0000 100%); min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; padding: 20px; padding-top: 55px; color: #FFFFFF;">
+
+    <div style="position: fixed; top: 0; left: 0; width: 100%; background: #4A0000; border-bottom: 2px solid #FFD700; padding: 6px 0; font-weight: bold; color: #FFD700; font-size: 14px; z-index: 9999; overflow: hidden;">
+        <marquee scrollamount="5">[НОВОСТИ ВОЙСКА]: Открыт official наборы в Лейб-Гвардию! 20.05.2026 18:00 по мск будет проведен ивент "Знакомство С Казаками" в нашем дс канале Лейб Гвардии</marquee>
     </div>
 
-  
-    <!-- Заголовок -->
-    <h1 style="color: #FFD700; text-shadow: 2px 2px 4px rgba(0,0,0,0.6); margin-top: 10px;">Лейб-Гвардия Великого Донского Войска</h1>
+    <h1 style="color: #FFD700; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">Лейб-Гвардия Великого Донского Войска</h1>
     
-    <!-- Описание фракции -->
-    <p style="max-width: 800px; margin: 20px auto; text-align: left; background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; border: 1px solid #FFD700; line-height: 1.6; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+    <p style="max-width: 800px; margin: 20px auto; text-align: left; background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; border: 1px solid #FFD700; line-height: 1.6;">
         <b style="color: #FFD700; font-size: 1.1em;">Про нас:</b> Полк сформирован царём Петром 1 в 1690 году из потешных села Преображенского, от которого и получил своё наименование, старшинство установлено с 1683 года. В 1692 году полковником (полковым командиром) Преображенского полка назначен Ю. фон Мендег, при этом А. М. Голивин стал генерал-майором и объединил командование всеми «потешными»(то есть ещё и Семеновским полком), так был сформирован Лейб-Гвардии Полк.
     </p>
 
+    <img src="orig.jpg" width="500" class="animated-img" style="border-radius: 10px; border: 2px solid #FFD700;">
     <br>
-    <!-- Главное изображение / Флаг фракции -->
-    <img src="orig.jpg" width="500" alt="Изображение полка" class="animated-img" style="border-radius: 10px; border: 2px solid #FFD700;">
-    <br>
+    <audio id="bgMusic" src="Wehrmacht_Prusskij_marsh_-_Koenigraetzer_Marsch_Marsh_Lejb-gvardii_konnoj_artillerii_(TheMP3.Info).mp3" loop controls style="margin: 20px 0;"></audio>
 
-    <!-- Плеер -->
-    <audio id="bgMusic" src="Wehrmacht_Prusskij_marsh_-_Koenigraetzer_Marsch_Marsh_Lejb-gvardii_konnoj_artillerii_(TheMP3.Info).mp3" loop controls style="margin: 20px 0; font-weight: bold;"></audio>
-
-    <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Как вступить к нам</h2>
-    <p style="color: #E0E0E0;">Перейти по ссылкам ниже:</p>
-
-    <!-- БЛОК ССЫЛОК БЕЗ ИЗМЕНЕНИЙ -->
+    <h2 style="color: #FFD700;">Как вступить к нам</h2>
+    
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px; margin: 0 auto; padding: 10px;">
-        
-        <!-- Roblox Группа Донской Армии -->
-        <a href="https://roblox.com" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background-color: #0E2954; color: #FFFFFF; text-decoration: none; border-radius: 8px; min-width: 220px; border: 2px solid #FFD700; box-shadow: 0 4px 6px rgba(0,0,0,0.4);">
-            <svg width="20" height="20" viewBox="0 0 60 60" style="flex-shrink: 0;">
-                <path d="M10.12 41.72L18.28 11.28L48.72 19.44L40.56 49.88L10.12 41.72ZM33.02 28.16L29.35 27.18L26.54 30.85L27.52 34.52L31.19 35.5L34 31.83L33.02 28.16Z" fill="#FFD700"/>
-            </svg>
-            <div style="text-align: left;">
-                <span style="display: block; font-weight: bold; font-size: 14px;">Roblox Группа Донской Армии</span>
-                <span style="font-size: 11px; opacity: 0.8; display: block;">(кликабельно)</span>
-            </div>
+        <a href="https://roblox.com" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background-color: #0E2954; color: #FFFFFF; text-decoration: none; border-radius: 8px; min-width: 220px; border: 2px solid #FFD700;">
+            <svg width="20" height="20" viewBox="0 0 60 60"><path d="M10.12 41.72L18.28 11.28L48.72 19.44L40.56 49.88L10.12 41.72ZM33.02 28.16L29.35 27.18L26.54 30.85L27.52 34.52L31.19 35.5L34 31.83L33.02 28.16Z" fill="#FFD700"/></svg>
+            <div style="text-align: left;"><span style="display: block; font-weight: bold; font-size: 14px;">Roblox Группа Донской Армии</span><span style="font-size: 11px; opacity: 0.8;">(кликабельно)</span></div>
         </a>
-
-        <!-- Roblox Группа ВСЮР -->
-        <a href="https://roblox.com" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background-color: #0E2954; color: #FFFFFF; text-decoration: none; border-radius: 8px; min-width: 220px; border: 2px solid #FFD700; box-shadow: 0 4px 6px rgba(0,0,0,0.4);">
-            <svg width="20" height="20" viewBox="0 0 60 60" style="flex-shrink: 0;">
-                <path d="M10.12 41.72L18.28 11.28L48.72 19.44L40.56 49.88L10.12 41.72ZM33.02 28.16L29.35 27.18L26.54 30.85L27.52 34.52L31.19 35.5L34 31.83L33.02 28.16Z" fill="#FFD700"/>
-            </svg>
-            <div style="text-align: left;">
-                <span style="display: block; font-weight: bold; font-size: 14px;">Roblox Группа ВСЮР</span>
-                <span style="font-size: 11px; opacity: 0.8; display: block;">(кликабельно)</span>
-            </div>
+        <a href="https://roblox.com" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background-color: #0E2954; color: #FFFFFF; text-decoration: none; border-radius: 8px; min-width: 220px; border: 2px solid #FFD700;">
+            <svg width="20" height="20" viewBox="0 0 60 60"><path d="M10.12 41.72L18.28 11.28L48.72 19.44L40.56 49.88L10.12 41.72ZM33.02 28.16L29.35 27.18L26.54 30.85L27.52 34.52L31.19 35.5L34 31.83L33.02 28.16Z" fill="#FFD700"/></svg>
+            <div style="text-align: left;"><span style="display: block; font-weight: bold; font-size: 14px;">Roblox Группа ВСЮР</span><span style="font-size: 11px; opacity: 0.8;">(кликабельно)</span></div>
         </a>
-        
-        <!-- Discord Донская Армия -->
-        <a href="https://discord.gg" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; background-color: #FFD700; color: #3A0000; text-decoration: none; border-radius: 8px; min-width: 220px; box-shadow: 0 4px 6px rgba(0,0,0,0.4); border: 2px solid #FFD700;">
-            <svg width="22" height="22" viewBox="0 0 127.14 96.36" style="flex-shrink: 0;">
-                <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53a105.6,105.6,0,0,0,32,16.14,79,79,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.75-5.13c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,70.71,0c.85.69,1.74,1.37,2.65,2a75.58,75.58,0,0,0,70.71,0c.85.69,1.74,1.37,2.65,2a68.42,68.42,0,0,1-10.75,5.13,79,79,0,0,0,6.85,11.11,105.6,105.6,0,0,0,32-16.14C129.66,50.67,123.83,27.78,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" fill="#3A0000"/>
-            </svg>
-            <div style="text-align: left;">
-                <span style="display: block; font-weight: bold; font-size: 14px;">Discord Донская Армия</span>
-                <span style="font-size: 11px; opacity: 0.9; display: block;">(кликабельно)</span>
-            </div>
+        <a href="https://discord.gg" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; background-color: #FFD700; color: #3A0000; text-decoration: none; border-radius: 8px; min-width: 220px; border: 2px solid #FFD700;">
+            <svg width="22" height="22" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53a105.6,105.6,0,0,0,32,16.14,79,79,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.75-5.13c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,70.71,0c.85.69,1.74,1.37,2.65,2a68.42,68.42,0,0,1-10.75,5.13,79,79,0,0,0,6.85,11.11,105.6,105.6,0,0,0,32-16.14C129.66,50.67,123.83,27.78,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" fill="#3A0000"/></svg>
+            <div style="text-align: left;"><span style="display: block; font-weight: bold; font-size: 14px;">Discord Донская Армия</span><span style="font-size: 11px; opacity: 0.9;">(кликабельно)</span></div>
         </a>
     </div>
 
-    <!-- БОЛЬШАЯ НИЖНЯЯ КНОПКА DISCORD -->
     <div style="margin: 15px 0;">
-        <a href="https://discord.gg" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 15px 35px; background-color: #FFD700; color: #3A0000; text-decoration: none; border-radius: 8px; min-width: 260px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); border: 2px solid #FFD700;">
-            <svg width="24" height="24" viewBox="0 0 127.14 96.36" style="flex-shrink: 0;">
-                <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53a105.6,105.6,0,0,0,32,16.14,79,79,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.75-5.13c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,70.71,0c.85.69,1.74,1.37,2.65,2a68.42,68.42,0,0,1-10.75,5.13,79,79,0,0,0,6.85,11.11,105.6,105.6,0,0,0,32-16.14C129.66,50.67,123.83,27.78,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" fill="#3A0000"/>
-            </svg>
-            <div style="text-align: left;">
-                <span style="display: block; font-weight: bold; font-size: 18px;">Наш Discord Лейб Гвардии</span>
-                <span style="font-size: 12px; opacity: 0.9; display: block;">(кликабельно)</span>
-            </div>
+        <a href="https://discord.gg" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 15px 35px; background-color: #FFD700; color: #3A0000; text-decoration: none; border-radius: 8px; min-width: 260px; border: 2px solid #FFD700; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+            <svg width="24" height="24" viewBox="0 0 127.14 96.36"><path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.95,54.65,1,77.53a105.6,105.6,0,0,0,32,16.14,79,79,0,0,0,6.85-11.11,68.42,68.42,0,0,1-10.75-5.13c.91-.66,1.8-1.34,2.65-2a75.58,75.58,0,0,0,70.71,0c.85.69,1.74,1.37,2.65,2a68.42,68.42,0,0,1-10.75,5.13,79,79,0,0,0,6.85,11.11,105.6,105.6,0,0,0,32-16.14C129.66,50.67,123.83,27.78,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" fill="#3A0000"/></svg>
+            <div style="text-align: left;"><span style="display: block; font-weight: bold; font-size: 18px;">Наш Discord Лейб Гвардии</span><span style="font-size: 12px; opacity: 0.9;">(кликабельно)</span></div>
         </a>
     </div>
 
-    <!-- Блок анкеты -->
-    <div style="background: rgba(255, 255, 255, 0.95); max-width: 600px; margin: 30px auto; padding: 20px; border-radius: 15px; text-align: left; border: 2px solid #FFD700; box-shadow: 0 6px 20px rgba(0,0,0,0.5); color: #333333;">
-        <h3 style="margin-top: 0; text-align: center; color: #3A0000; font-size: 20px;">Анкета для вступления</h3>
-        <p style="color: #555;">Далее мы заполняем анкету, пример:</p>
+    <div style="background: rgba(255, 255, 255, 0.95); max-width: 600px; margin: 30px auto; padding: 20px; border-radius: 15px; text-align: left; border: 2px solid #FFD700; color: #333;">
+        <h3 style="text-align: center; color: #3A0000;">Анкета для вступления</h3>
+        <p>Далее мы заполняем анкету, пример:</p>
         <div id="anketa-text" style="white-space: pre-line; font-weight: 500;">Ваш ник в рб (юз) :
 Готовы ли вы активить на постоянной основе?
 Готовы ли вы быть верным Всевеликому Войску Донскому до самого конца? :
@@ -294,178 +145,95 @@
 зашли ли вы в группы? (И В ДОНСКОЕ ВОЙСКО И ВО ВСЮР) скрин с подтверждением)
 Как вы о нас узнали о нас:
 Пинг офицера: @Epix (@couiuy11)</div>
-        <button onclick="copyAnketa()" style="margin-top: 15px; width: 100%; padding: 12px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 16px; box-shadow: 0 3px 6px rgba(0,0,0,0.2);">Скопировать анкету</button>
-        <p style="margin-top: 20px; text-align: center; color: #666; font-style: italic;">По вопросам писать тем, кто вас пригласил</p>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('anketa-text').innerText); alert('Скопировано!')" style="margin-top: 15px; width: 100%; padding: 12px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; font-weight: bold;">Скопировать анкету</button>
     </div>
 
-    <!-- БЛОК: ШТАБ КОМАНДОВАНИЯ СНИЗУ -->
-    <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin-top: 40px;">Штаб Командования</h2>
-    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin: 20px auto; padding: 10px;">
-        
-        <!-- Карточка 1 (Epix) -->
-        <div class="officer-card">
-            <img src="epix.png" alt="Epix" class="officer-avatar" onerror="this.src='https://unsplash.com'">
-            <div style="font-weight: bold; color: #FFD700; font-size: 16px;">Epix</div>
-            <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Атаман Донской Армии</div>
+    <div class="gvardia-board-section">
+        <h2 onclick="toggleGvardiaPanel()" style="color: #FFD700; cursor: pointer; text-transform: uppercase;">📌 Доска приказов командующего</h2>
+        <div id="gvardiaPanel">
+            <input type="password" id="gvardiaPin" placeholder="ПИН-код">
+            <textarea id="gvardiaText" placeholder="Введите текст приказа..."></textarea>
+            <button onclick="addGvardiaNotice()">Опубликовать приказ</button>
         </div>
-
-        <!-- Карточка 2 (Arhip) -->
-        <div class="officer-card">
-            <img src="arhip.png" alt="Arhip" class="officer-avatar" onerror="this.src='https://unsplash.com'">
-            <div style="font-weight: bold; color: #FFD700; font-size: 16px;">Arhip</div>
-            <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Атаман Лейб гвардии</div>
-        </div>
-
-        <!-- Карточка 3 (Dolki_bee) -->
-        <div class="officer-card">
-            <img src="dolkibee.png" alt="Dolki_bee" class="officer-avatar" onerror="this.src='https://unsplash.com'">
-            <div style="font-weight: bold; color: #FFD700; font-size: 16px;">Dolki_bee</div>
-            <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Создатель сайта</div>
-        </div>
+        <div id="gvardiaSurface" class="gvardia-board-surface"></div>
     </div>
 
-    <!-- Нижнее изображение -->
-    <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Изображение" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
+    <h2 style="color: #FFD700; margin-top: 40px;">Штаб Командования</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 30px;">
+        <div class="officer-card"><img src="epix.png" class="officer-avatar" onerror="this.src='https://via.placeholder.com/85'"><br><b style="color:#FFD700">Epix</b><br><small style="color:#E0E0E0">Атаман Донской Армии</small></div>
+        <div class="officer-card"><img src="arhip.png" class="officer-avatar" onerror="this.src='https://via.placeholder.com/85'"><br><b style="color:#FFD700">Arhip</b><br><small style="color:#E0E0E0">Атаман Лейб гвардии</small></div>
+        <div class="officer-card"><img src="dolkibee.png" class="officer-avatar" onerror="this.src='https://via.placeholder.com/85'"><br><b style="color:#FFD700">Dolki_bee</b><br><small style="color:#E0E0E0">Создатель сайта</small></div>
+    </div>
+
+    <img src="RobloxScreenShot20260515_183507712.png" width="500" class="animated-img" style="border-radius: 10px; border: 2px solid #FFD700; margin-top: 20px;">
+
 <script>
-    // === ГЛОБАЛЬНЫЕ НАСТРОЙКИ ===
     const BIN_ID = "6a078dc2250b1311c3578d87"; 
     const API_KEY = "$2a$10$Z6.wePsLCI4CFdmRfN4UguBepjlZL7bWIvC//4IaGIO0rS4/iboZe";
     const G_MASTER_PIN = "1690"; 
     let globalNoticesList = [];
 
-    // Показать/скрыть панель управления
     function toggleGvardiaPanel() {
         const panel = document.getElementById('gvardiaPanel');
-        if (panel) {
-            panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'block' : 'none';
-            renderNotices(globalNoticesList);
-        }
+        panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'flex' : 'none';
+        renderNotices(globalNoticesList);
     }
 
-    // Горячие клавиши (Ctrl+Shift+Y) для скрытого входа
-    window.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
-            e.preventDefault();
-            toggleGvardiaPanel();
-        }
+    window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') { e.preventDefault(); toggleGvardiaPanel(); }
     });
 
-    // Загрузка данных с сервера JSONBin
     async function fetchNotices() {
         const board = document.getElementById('gvardiaSurface');
-        board.innerHTML = '<div style="color:#FFD700; width:100%; text-align:center;">Связь со штабом...</div>';
-
+        board.innerHTML = '<div style="color:#FFD700; width:100%;">Связь со штабом...</div>';
         try {
-            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-                headers: { 'X-Master-Key': API_KEY }
-            });
-            if (!response.ok) throw new Error();
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, { headers: { 'X-Master-Key': API_KEY } });
             const data = await response.json();
-            
-            // Проверка на пустой или некорректный список
             globalNoticesList = Array.isArray(data.record) ? data.record : [];
             renderNotices(globalNoticesList);
-        } catch (error) {
-            board.innerHTML = '<div style="color:#ff3333; width:100%; text-align:center;">Ошибка связи. Проверьте интернет.</div>';
-        }
+        } catch (e) { board.innerHTML = '<div style="color:red;">Ошибка связи</div>'; }
     }
 
-    // Отправка данных на сервер
     async function saveToServer(newList) {
-        try {
-            await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Master-Key': API_KEY
-                },
-                body: JSON.stringify(newList)
-            });
-        } catch (error) {
-            alert("Ошибка сохранения! Попробуйте еще раз.");
-        }
+        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
+            body: JSON.stringify(newList)
+        });
     }
 
-    // Логика кнопки "Опубликовать"
     async function addGvardiaNotice() {
-        const pin = document.getElementById('gvardiaPin');
-        const text = document.getElementById('gvardiaText');
-        
-        if (pin.value !== G_MASTER_PIN) { 
-            alert("Доступ запрещен! Неверный ПИН-код."); 
-            return; 
-        }
-        if (text.value.trim() === "") {
-            alert("Текст приказа не может быть пустым.");
-            return;
-        }
-
-        const newNotice = {
-            id: Date.now(),
-            text: text.value,
-            date: new Date().toLocaleDateString('ru-RU')
-        };
-
-        globalNoticesList.unshift(newNotice);
+        const pin = document.getElementById('gvardiaPin'), text = document.getElementById('gvardiaText');
+        if (pin.value !== G_MASTER_PIN) { alert("Неверный ПИН!"); return; }
+        if (!text.value.trim()) return;
+        globalNoticesList.unshift({ id: Date.now(), text: text.value, date: new Date().toLocaleDateString('ru-RU') });
         renderNotices(globalNoticesList);
         await saveToServer(globalNoticesList);
-        
-        text.value = '';
-        pin.value = '';
+        text.value = ''; pin.value = '';
     }
 
-    // Отрисовка объявлений на доске
     function renderNotices(list) {
         const board = document.getElementById('gvardiaSurface');
-        if (!board) return;
-        const panel = document.getElementById('gvardiaPanel');
         board.innerHTML = '';
-
-        // Фильтруем список от технических заглушек (например, если там был [0])
-        const validList = list.filter(item => typeof item === 'object' && item.text);
-
-        if (validList.length === 0) {
-            board.innerHTML = '<div style="color:rgba(255,255,255,0.2);font-size:11px;padding:30px 0;width:100%;text-align:center;">Нет активных приказов</div>';
-            return;
-        }
-
+        const validList = list.filter(item => item && item.text);
+        if (validList.length === 0) { board.innerHTML = '<div style="color:rgba(255,255,255,0.2); padding:20px;">Нет активных приказов</div>'; return; }
         validList.forEach(item => {
             const card = document.createElement('div');
             card.className = 'gvardia-notice';
-            
-            const textDiv = document.createElement('div');
-            textDiv.className = 'gvardia-notice-text';
-            textDiv.textContent = item.text;
-            card.appendChild(textDiv);
-
-            const footer = document.createElement('div');
-            footer.className = 'gvardia-notice-footer';
-            
-            const dateDiv = document.createElement('div');
-            dateDiv.textContent = item.date;
-            footer.appendChild(dateDiv);
-            
-            if (panel && panel.style.display === 'block') {
-                const btn = document.createElement('button');
-                btn.className = 'gvardia-notice-del';
-                btn.textContent = 'Снять';
-                btn.onclick = async function() {
-                    if (prompt("Введите ПИН-код для удаления:") === G_MASTER_PIN) {
-                        globalNoticesList = globalNoticesList.filter(n => n.id !== item.id);
-                        renderNotices(globalNoticesList);
-                        await saveToServer(globalNoticesList);
-                    } else {
-                        alert("Неверный код!");
-                    }
-                };
-                footer.appendChild(btn);
-            }
-            
-            card.appendChild(footer);
+            card.innerHTML = `<div class="gvardia-notice-text">${item.text}</div><div class="gvardia-notice-footer"><span>${item.date}</span>${document.getElementById('gvardiaPanel').style.display === 'flex' ? `<button class="gvardia-notice-del" onclick="deleteNotice(${item.id})">Снять</button>` : ''}</div>`;
             board.appendChild(card);
         });
     }
 
-    // Запуск загрузки при открытии страницы
+    window.deleteNotice = async function(id) {
+        if (prompt("ПИН-код:") === G_MASTER_PIN) {
+            globalNoticesList = globalNoticesList.filter(n => n.id !== id);
+            renderNotices(globalNoticesList);
+            await saveToServer(globalNoticesList);
+        }
+    };
+
     fetchNotices();
 </script>
+</body>
+</html>
