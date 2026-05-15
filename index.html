@@ -170,23 +170,24 @@
     <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin-top: 40px;">Штаб Командования</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin: 20px auto; padding: 10px;">
         
-        <!-- Карточка 1 -->
+        <!-- Карточка 1 (@Epix) -->
         <div class="officer-card">
-            <img src="avatar1.png" alt="Epix" class="officer-avatar" onerror="this.src='https://roblox.com'">
+            <!-- Скрипт запрашивает настоящую 3D голову по нику из Roblox -->
+            <img src="https://rbxcdn.com" id="avatar-epix" alt="Epix" class="officer-avatar">
             <div style="font-weight: bold; color: #FFD700; font-size: 16px;">@Epix</div>
             <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Офицер Штаба</div>
         </div>
 
-        <!-- Карточка 2 -->
+        <!-- Карточка 2 (@couiuy11) -->
         <div class="officer-card">
-            <img src="avatar2.png" alt="couiuy11" class="officer-avatar" onerror="this.src='https://roblox.com'">
+            <img src="https://rbxcdn.com" id="avatar-couiuy" alt="couiuy11" class="officer-avatar">
             <div style="font-weight: bold; color: #FFD700; font-size: 16px;">@couiuy11</div>
             <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Офицер Приемной</div>
         </div>
 
-        <!-- Карточка 3 -->
+        <!-- Карточка 3 (Dolki_bee) -->
         <div class="officer-card">
-            <img src="avatar3.png" alt="Dolki_bee" class="officer-avatar" onerror="this.src='https://roblox.com'">
+            <img src="https://rbxcdn.com" id="avatar-dolkibee" alt="Dolki_bee" class="officer-avatar">
             <div style="font-weight: bold; color: #FFD700; font-size: 16px;">Dolki_bee</div>
             <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Создатель сайта</div>
         </div>
@@ -213,6 +214,31 @@
             navigator.clipboard.writeText(text);
             alert("Анкета скопирована!");
         }
+
+        // Автоматическая загрузка официальных аватаров игроков по их никнеймам (Usernames)
+        function loadRobloxAvatars() {
+            // Массив с никами ваших офицеров
+            const users = [
+                { name: 'Epix', elementId: 'avatar-epix' },
+                { name: 'couiuy11', elementId: 'avatar-couiuy' },
+                { name: 'Dolki_bee', elementId: 'avatar-dolkibee' }
+            ];
+
+            users.forEach(user => {
+                // Запрос к открытому API Roblox для получения ID и картинки игрока
+                fetch(`https://roblox.com{user.name}&size=150x150&format=Png&isCircular=true`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.data && data.data[0]) {
+                            document.getElementById(user.elementId).src = data.data[0].imageUrl;
+                        }
+                    })
+                    .catch(err => console.log("Ошибка загрузки аватара для " + user.name, err));
+            });
+        }
+
+        // Запуск поиска аватарок сразу при открытии страницы
+        window.onload = loadRobloxAvatars;
     </script>
 </body>
 </html>
