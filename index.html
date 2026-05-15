@@ -57,7 +57,7 @@
             object-fit: cover;
         }
 
-        /* СТИЛИ ДОСКИ (Изолированные) */
+        /* СТИЛИ ДОСКИ ПРИКАЗОВ */
         .gvardia-board-section { max-width: 600px; width: 90%; margin: 50px auto; font-family: 'Segoe UI', sans-serif; }
         .gvardia-board-surface {
             background-color: #24140a;
@@ -91,6 +91,23 @@
         }
         #gvardiaPanel input, #gvardiaPanel textarea { background: #111; border: 1px solid #444; color: #fff; padding: 8px; }
         #gvardiaPanel button { background: #ff3333; color: #fff; border: none; padding: 10px; cursor: pointer; font-weight: bold; }
+
+        /* СТИЛИ ДОСКИ ПОЧЕТА */
+        .hall-of-fame { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px auto; max-width: 900px; align-items: flex-end; }
+        .hero-card {
+            background: rgba(0, 0, 0, 0.7); border-radius: 15px; padding: 20px; width: 190px;
+            text-align: center; position: relative; border: 2px solid #555; transition: all 0.3s ease;
+        }
+        .hero-1 { border-color: #FFD700; transform: scale(1.1); z-index: 2; box-shadow: 0 0 25px rgba(255, 215, 0, 0.4); background: rgba(40, 30, 0, 0.8); }
+        .hero-2 { border-color: #C0C0C0; }
+        .hero-3 { border-color: #CD7F32; }
+        .hero-rank {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: #000; padding: 3px 12px; border-radius: 10px; font-weight: bold; font-size: 12px; border: 1px solid;
+        }
+        .hero-avatar { width: 90px; height: 90px; border-radius: 50%; margin-bottom: 10px; border: 3px solid; object-fit: cover; background: #222; }
+        .hero-name { font-weight: bold; color: #fff; font-size: 16px; margin-bottom: 5px; }
+        .hero-desc { font-size: 11px; color: #ccc; font-style: italic; line-height: 1.2; }
     </style>
 </head>
 <body style="background: radial-gradient(circle, #8B0000 0%, #3A0000 100%); min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; padding: 20px; padding-top: 55px; color: #FFFFFF;">
@@ -156,6 +173,31 @@
             <button onclick="addGvardiaNotice()">Опубликовать приказ</button>
         </div>
         <div id="gvardiaSurface" class="gvardia-board-surface"></div>
+    </div>
+
+    <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin-top: 50px;">🏆 Герои Недели</h2>
+    <div class="hall-of-fame">
+        
+        <div class="hero-card hero-2">
+            <div class="hero-rank" style="color: #C0C0C0; border-color: #C0C0C0;">II МЕСТО</div>
+            <img src="https://via.placeholder.com/100" class="hero-avatar" style="border-color: #C0C0C0;">
+            <div class="hero-name">Пусто</div>
+            <div class="hero-desc"></div>
+        </div>
+
+        <div class="hero-card hero-1">
+            <div class="hero-rank" style="color: #FFD700; border-color: #FFD700;">I МЕСТО</div>
+            <img src="https://via.placeholder.com/100" class="hero-avatar" style="border-color: #FFD700;">
+            <div class="hero-name">Пусто</div>
+            <div class="hero-desc"></div>
+        </div>
+
+        <div class="hero-card hero-3">
+            <div class="hero-rank" style="color: #CD7F32; border-color: #CD7F32;">III МЕСТО</div>
+            <img src="https://www.roblox.com/users/3231757336/profile" class="hero-avatar" style="border-color: #CD7F32;">
+            <div class="hero-name">Пусто</div>
+            <div class="hero-desc"></div>
+        </div>
     </div>
 
     <h2 style="color: #FFD700; margin-top: 40px;">Штаб Командования</h2>
