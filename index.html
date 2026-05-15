@@ -326,170 +326,23 @@
 
     <!-- Нижнее изображение -->
     <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Изображение" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
-<!-- ====================================================================== -->
-<!-- АВТОНОМНЫЙ ИСПРАВЛЕННЫЙ БЛОК ДОСКИ ОБЪЯВЛЕНИЙ -->
-<!-- ====================================================================== -->
-<style>
-    .gvardia-board-section {
-        max-width: 600px;
-        width: 90%;
-        margin: 50px auto 30px auto;
-        font-family: 'Segoe UI', sans-serif;
-        box-sizing: border-box;
-        clear: both;
-    }
-    .gvardia-board-title {
-        width: 100%;
-        background: none;
-        border: none;
-        color: #FFD700;
-        text-transform: uppercase;
-        font-size: 18px;
-        text-align: center;
-        margin-bottom: 15px;
-        letter-spacing: 1px;
-        cursor: pointer;
-        font-weight: bold;
-    }
-    .gvardia-board-admin {
-        background: rgba(0, 0, 0, 0.95);
-        border: 2px solid #ff3333;
-        border-radius: 8px;
-        padding: 12px;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-    }
-    .gvardia-board-admin input, .gvardia-board-admin textarea {
-        background: #111;
-        border: 1px solid #444;
-        color: #fff;
-        padding: 8px;
-        border-radius: 4px;
-        font-size: 14px;
-        box-sizing: border-box;
-        width: 100%;
-    }
-    .gvardia-board-admin button {
-        background: #ff3333;
-        color: #fff;
-        border: none;
-        padding: 10px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 4px;
-        text-transform: uppercase;
-        width: 100%;
-    }
-    .gvardia-board-surface {
-        background-color: #24140a;
-        background-image: linear-gradient(90deg, transparent 49%, rgba(0,0,0,0.4) 50%, transparent 51%), linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
-        background-size: 70px 100%, 100% 3px;
-        border: 12px solid #140b05;
-        outline: 2px solid #ff3333;
-        border-radius: 4px;
-        min-height: 200px;
-        padding: 20px;
-        box-sizing: border-box;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        justify-content: center;
-        align-content: flex-start;
-        box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-    }
-    .gvardia-notice {
-        background: #FFD700;
-        color: #000 !important;
-        padding: 12px;
-        width: 160px;
-        min-height: 140px;
-        box-sizing: border-box;
-        border-left: 4px solid #ff3333;
-        transform: rotate(1deg);
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
-    }
-    .gvardia-notice:nth-child(even) {
-        background: #ff3333;
-        color: #fff !important;
-        border-left: 4px solid #FFD700;
-        transform: rotate(-1deg);
-    }
-    .gvardia-notice::before {
-        content: '';
-        position: absolute;
-        top: -5px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 8px;
-        height: 8px;
-        background: #111;
-        border-radius: 50%;
-    }
-    .gvardia-notice-text {
-        font-size: 13px;
-        font-weight: bold;
-        word-break: break-word;
-        white-space: pre-wrap;
-        text-align: left;
-        line-height: 1.3;
-    }
-    .gvardia-notice-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 9px;
-        margin-top: 8px;
-        border-top: 1px solid rgba(0,0,0,0.1);
-        padding-top: 4px;
-    }
-    .gvardia-notice:nth-child(even) .gvardia-notice-footer {
-        border-top: 1px solid rgba(255,255,255,0.2);
-    }
-    .gvardia-notice-del {
-        background: #000;
-        color: #fff;
-        border: none;
-        padding: 2px 5px;
-        cursor: pointer;
-        border-radius: 2px;
-        font-size: 9px;
-    }
-</style>
-
-<div class="gvardia-board-section">
-    <!-- Одиночный клик по этой кнопке откроет скрытую панель -->
-    <button type="button" class="gvardia-board-title" onclick="toggleGvardiaPanel()">
-        📌 Доска объявлений командующего
-    </button>
-    
-    <div class="gvardia-board-admin" id="gvardiaPanel" style="display: none;">
-        <input type="password" id="gvardiaPin" placeholder="ПИН-код для публикации">
-        <textarea id="gvardiaText" placeholder="Текст нового объявления..." rows="2" style="margin-top: 8px; margin-bottom: 8px;"></textarea>
-        <button type="button" onclick="addGvardiaNotice()">Опубликовать приказ</button>
-    </div>
-    
-    <div class="gvardia-board-surface" id="gvardiaSurface"></div>
-</div>
-
 <script>
+    // === ГЛОБАЛЬНЫЕ НАСТРОЙКИ ===
+    const BIN_ID = "6a078dc2250b1311c3578d87"; 
+    const API_KEY = "$2a$10$Z6.wePsLCI4CFdmRfN4UguBepjlZL7bWIvC//4IaGIO0rS4/iboZe";
     const G_MASTER_PIN = "1690"; 
+    let globalNoticesList = [];
 
+    // Показать/скрыть панель управления
     function toggleGvardiaPanel() {
         const panel = document.getElementById('gvardiaPanel');
         if (panel) {
-            if (panel.style.display === 'none' || panel.style.display === '') {
-                panel.style.display = 'block';
-            } else {
-                panel.style.display = 'none';
-            }
-            drawGvardiaNotices(); 
+            panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'block' : 'none';
+            renderNotices(globalNoticesList);
         }
     }
 
+    // Горячие клавиши (Ctrl+Shift+Y) для скрытого входа
     window.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
             e.preventDefault();
@@ -497,47 +350,86 @@
         }
     });
 
-    function addGvardiaNotice() {
+    // Загрузка данных с сервера JSONBin
+    async function fetchNotices() {
+        const board = document.getElementById('gvardiaSurface');
+        board.innerHTML = '<div style="color:#FFD700; width:100%; text-align:center;">Связь со штабом...</div>';
+
+        try {
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+                headers: { 'X-Master-Key': API_KEY }
+            });
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            
+            // Проверка на пустой или некорректный список
+            globalNoticesList = Array.isArray(data.record) ? data.record : [];
+            renderNotices(globalNoticesList);
+        } catch (error) {
+            board.innerHTML = '<div style="color:#ff3333; width:100%; text-align:center;">Ошибка связи. Проверьте интернет.</div>';
+        }
+    }
+
+    // Отправка данных на сервер
+    async function saveToServer(newList) {
+        try {
+            await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': API_KEY
+                },
+                body: JSON.stringify(newList)
+            });
+        } catch (error) {
+            alert("Ошибка сохранения! Попробуйте еще раз.");
+        }
+    }
+
+    // Логика кнопки "Опубликовать"
+    async function addGvardiaNotice() {
         const pin = document.getElementById('gvardiaPin');
         const text = document.getElementById('gvardiaText');
         
-        if (!pin || !text) return;
         if (pin.value !== G_MASTER_PIN) { 
-            alert("Доступ закрыт! Неверный ПИН-код."); 
+            alert("Доступ запрещен! Неверный ПИН-код."); 
             return; 
         }
         if (text.value.trim() === "") {
-            alert("Пожалуйста, введите текст приказа.");
+            alert("Текст приказа не может быть пустым.");
             return;
         }
 
-        const list = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
-        list.unshift({ 
-            id: Date.now(), 
-            text: text.value, 
-            date: new Date().toLocaleDateString('ru-RU') 
-        });
+        const newNotice = {
+            id: Date.now(),
+            text: text.value,
+            date: new Date().toLocaleDateString('ru-RU')
+        };
+
+        globalNoticesList.unshift(newNotice);
+        renderNotices(globalNoticesList);
+        await saveToServer(globalNoticesList);
         
-        localStorage.setItem('gvardia_notices_list', JSON.stringify(list));
         text.value = '';
-        drawGvardiaNotices();
+        pin.value = '';
     }
 
-    function drawGvardiaNotices() {
+    // Отрисовка объявлений на доске
+    function renderNotices(list) {
         const board = document.getElementById('gvardiaSurface');
         if (!board) return;
-        
-        const list = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
         const panel = document.getElementById('gvardiaPanel');
-        
         board.innerHTML = '';
 
-        if (list.length === 0) {
-            board.innerHTML = '<div style="color:rgba(255,255,255,0.2);font-size:11px;padding:30px 0;width:100%;text-align:center;">Нет активных объявлений</div>';
+        // Фильтруем список от технических заглушек (например, если там был [0])
+        const validList = list.filter(item => typeof item === 'object' && item.text);
+
+        if (validList.length === 0) {
+            board.innerHTML = '<div style="color:rgba(255,255,255,0.2);font-size:11px;padding:30px 0;width:100%;text-align:center;">Нет активных приказов</div>';
             return;
         }
 
-        list.forEach(item => {
+        validList.forEach(item => {
             const card = document.createElement('div');
             card.className = 'gvardia-notice';
             
@@ -557,15 +449,13 @@
                 const btn = document.createElement('button');
                 btn.className = 'gvardia-notice-del';
                 btn.textContent = 'Снять';
-                btn.onclick = function() {
-                    const checkPin = prompt("Введите ПИН-код для подтверждения удаления:");
-                    if (checkPin === G_MASTER_PIN) {
-                        let currentList = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
-                        currentList = currentList.filter(n => n.id !== item.id);
-                        localStorage.setItem('gvardia_notices_list', JSON.stringify(currentList));
-                        drawGvardiaNotices();
+                btn.onclick = async function() {
+                    if (prompt("Введите ПИН-код для удаления:") === G_MASTER_PIN) {
+                        globalNoticesList = globalNoticesList.filter(n => n.id !== item.id);
+                        renderNotices(globalNoticesList);
+                        await saveToServer(globalNoticesList);
                     } else {
-                        alert("Неверный ПИН-код!");
+                        alert("Неверный код!");
                     }
                 };
                 footer.appendChild(btn);
@@ -576,6 +466,6 @@
         });
     }
 
-    drawGvardiaNotices();
+    // Запуск загрузки при открытии страницы
+    fetchNotices();
 </script>
-<!-- ====================================================================== -->
