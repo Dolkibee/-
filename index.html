@@ -4,6 +4,130 @@
     <meta charset="UTF-8">
     <title>Лейб-Гвардия Великого Донского Войска</title>
     <style>
+
+/* --- СТИЛИ ДЛЯ ДЕРЕВЯННОЙ ДОСКИ --- */
+.wood-board-section {
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+.wood-board-title {
+    color: #FFD700;
+    text-transform: uppercase;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+/* Скрытая по умолчанию панель создания */
+.wood-board-admin {
+    display: none; 
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #ff3333;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 8px;
+}
+.wood-board-admin input, .wood-board-admin textarea {
+    background: #111;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+}
+.wood-board-admin button {
+    background: #ff3333;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+.wood-board-admin button:hover {
+    background: #FFD700;
+    color: #000;
+}
+.wood-board-surface {
+    background-color: #24140a;
+    background-image: linear-gradient(90deg, transparent 49%, rgba(0,0,0,0.4) 50%, transparent 51%), linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 70px 100%, 100% 3px;
+    border: 12px solid #140b05;
+    outline: 2px solid #ff3333;
+    border-radius: 4px;
+    min-height: 250px;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-content: flex-start;
+}
+.wood-notice {
+    background: #FFD700;
+    color: #000;
+    padding: 12px;
+    width: 140px;
+    min-height: 140px;
+    box-sizing: border-box;
+    border-left: 4px solid #ff3333;
+    transform: rotate(1deg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.wood-notice:nth-child(even) {
+    background: #ff3333;
+    color: #fff;
+    border-left: 4px solid #FFD700;
+    transform: rotate(-1deg);
+}
+.wood-notice::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #111;
+    border-radius: 50%;
+}
+.wood-notice-text {
+    font-size: 12px;
+    font-weight: bold;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+.wood-notice-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8px;
+    margin-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 4px;
+}
+.wood-notice:nth-child(even) .wood-notice-footer {
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+.wood-notice-del {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 1px 4px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+ 
+
         /* Стили для плавного увеличения кнопок при наведении */
         .btn-link {
             transition: transform 0.2s ease, box-shadow 0.2s ease !important;
@@ -104,6 +228,107 @@
 
     <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Как вступить к нам</h2>
     <p style="color: #E0E0E0;">Перейти по ссылкам ниже:</p>
+
+
+<!-- ДОСКА ОБЪЯВЛЕНИЙ -->
+<div class="wood-board-section">
+    <div class="wood-board-title">📌 Доска объявлений командующего</div>
+    
+    <!-- Панель управления, скрыта по умолчанию -->
+    <div class="wood-board-admin" id="adminPanel">
+        <input type="password" id="boardPin" placeholder="ПИН-код для публикации">
+        <textarea id="boardText" placeholder="Текст нового объявления..." rows="2"></textarea>
+        <button onclick="addNotice()">Опубликовать</button>
+    </div>
+    
+    <div class="wood-board-surface" id="boardSurface"></div>
+</div>
+
+<script>
+    const MASTER_PIN = "1690"; // Ваш секретный пин-код
+
+    // Слушатель нажатия клавиш (Ctrl + Shift + Y)
+    window.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
+            e.preventDefault();
+            const panel = document.getElementById('adminPanel');
+            if (panel) {
+                // Переключаем видимость панели: если скрыта — показываем flex, если открыта — скрываем
+                if (panel.style.display === 'flex') {
+                    panel.style.display = 'none';
+                } else {
+                    panel.style.display = 'flex';
+                }
+                showNotices(); // Обновляем доску, чтобы переключить кнопки удаления
+            }
+        }
+    });
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", showNotices);
+    } else {
+        showNotices();
+    }
+
+    function addNotice() {
+        const pin = document.getElementById('boardPin');
+        const text = document.getElementById('boardText');
+        if (pin.value !== MASTER_PIN) { alert("Доступ закрыт!"); return; }
+        if (text.value.trim() === "") return;
+
+        const list = JSON.parse(localStorage.getItem('commander_notices')) || [];
+        list.unshift({ id: Date.now(), text: text.value, date: new Date().toLocaleDateString('ru-RU') });
+        localStorage.setItem('commander_notices', JSON.stringify(list));
+        text.value = '';
+        showNotices();
+    }
+
+    function showNotices() {
+        const board = document.getElementById('boardSurface');
+        if (!board) return;
+        const list = JSON.parse(localStorage.getItem('commander_notices')) || [];
+        const currentPin = document.getElementById('boardPin') ? document.getElementById('boardPin').value : '';
+        
+        board.innerHTML = list.length === 0 ? '<div style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:20px;">Нет объявлений</div>' : '';
+
+        list.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'wood-notice';
+            card.innerHTML = `<div class="wood-notice-text"></div><div class="wood-notice-footer"><div>${item.date}</div></div>`;
+            card.querySelector('.wood-notice-text').textContent = item.text;
+            
+            // Кнопка "Снять" отображается на листиках только тогда, когда админ-панель открыта комбинацией клавиш
+            const panel = document.getElementById('adminPanel');
+            if (panel && panel.style.display === 'flex') {
+                const btn = document.createElement('button');
+                btn.className = 'wood-notice-del';
+                btn.textContent = 'Снять';
+                btn.onclick = () => {
+                    // Запрос пароля перед непосредственным удалением
+                    const checkPin = prompt("Введите ПИН-код для подтверждения удаления:");
+                    if (checkPin === MASTER_PIN) {
+                        let currentList = JSON.parse(localStorage.getItem('commander_notices')) || [];
+                        currentList = currentList.filter(n => n.id !== item.id);
+                        localStorage.setItem('commander_notices', JSON.stringify(currentList));
+                        showNotices();
+                    } else {
+                        alert("Неверный ПИН-код! Объявление не удалено.");
+                    }
+                };
+                card.querySelector('.wood-notice-footer').appendChild(btn);
+            }
+            board.appendChild(card);
+        });
+    }
+
+    // Перерисовывать доску при ручном вводе пин-кода (если потребуется)
+    const pinInput = document.getElementById('boardPin');
+    if (pinInput) {
+        pinInput.addEventListener('input', showNotices);
+    }
+</script>
+
+
 
     <!-- ВАШ БЛОК ССЫЛОК БЕЗ ИЗМЕНЕНИЙ -->
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px; margin: 0 auto; padding: 10px;">
