@@ -233,10 +233,13 @@
 <!-- ДОСКА ОБЪЯВЛЕНИЙ -->
 <!-- ДОСКА ОБЪЯВЛЕНИЙ -->
 <div class="wood-board-section">
-    <div class="wood-board-title">📌 Доска объявлений командующего</div>
+    <!-- Двойной клик/тач по этому заголовку откроет панель и на ПК, и на телефоне -->
+    <div class="wood-board-title" ondblclick="toggleAdminPanel()" style="cursor: pointer; user-select: none;">
+        📌 Доска объявлений командующего
+    </div>
     
     <!-- Панель управления, скрыта по умолчанию -->
-    <div class="wood-board-admin" id="adminPanel">
+    <div class="wood-board-admin" id="adminPanel" style="display: none;">
         <input type="password" id="boardPin" placeholder="ПИН-код для публикации" oninput="showNotices()">
         <textarea id="boardText" placeholder="Текст нового объявления..." rows="2"></textarea>
         <button onclick="addNotice()">Опубликовать</button>
@@ -246,25 +249,30 @@
 </div>
 
 <script>
-    const MASTER_PIN = "1690"; // Ваш секретный пин-код
+    const MASTER_PIN = "1690"; // Ваш секретный ПИН-код
 
-    // Слушатель нажатия клавиш (Ctrl + Shift + Y)
+    // Функция открытия/закрытия панели (работает везде)
+    function toggleAdminPanel() {
+        const panel = document.getElementById('adminPanel');
+        if (panel) {
+            if (panel.style.display === 'flex') {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'flex';
+            }
+            showNotices(); 
+        }
+    }
+
+    // Сохраняем поддержку комбинации клавиш Ctrl + Shift + Y для ПК
     window.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
             e.preventDefault();
-            const panel = document.getElementById('adminPanel');
-            if (panel) {
-                if (panel.style.display === 'flex') {
-                    panel.style.display = 'none';
-                } else {
-                    panel.style.display = 'flex';
-                }
-                showNotices(); 
-            }
+            toggleAdminPanel();
         }
     });
 
-    // Корректный вызов инициализации для GitHub Pages
+    // Инициализация доски при загрузке страницы
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", showNotices);
     } else {
@@ -281,7 +289,6 @@
         const list = JSON.parse(localStorage.getItem('commander_notices')) || [];
         list.unshift({ id: Date.now(), text: text.value, date: new Date().toLocaleDateString('ru-RU') });
         
-        // Точное сохранение в правильный ключ
         localStorage.setItem('commander_notices', JSON.stringify(list));
         text.value = '';
         showNotices();
@@ -291,12 +298,11 @@
         const board = document.getElementById('boardSurface');
         if (!board) return;
         
-        // Чтение из строго того же ключа
         const list = JSON.parse(localStorage.getItem('commander_notices')) || [];
         const pinInp = document.getElementById('boardPin');
         const currentPin = pinInp ? pinInp.value : '';
         
-        board.innerHTML = list.length === 0 ? '<div style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:20px;">Нет объявлений</div>' : '';
+        board.innerHTML = list.length === 0 ? '<div style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:20px;width:100%;text-align:center;">Нет объявлений</div>' : '';
 
         list.forEach(item => {
             const card = document.createElement('div');
@@ -327,6 +333,7 @@
         });
     }
 </script>
+
 
     <!-- ВАШ БЛОК ССЫЛОК БЕЗ ИЗМЕНЕНИЙ -->
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px; margin: 0 auto; padding: 10px;">
