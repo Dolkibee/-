@@ -327,16 +327,14 @@
     <!-- Нижнее изображение -->
     <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Изображение" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
 
- <!-- ====================================================================== -->
-<!-- ФИНАЛЬНАЯ НАДЕЖНАЯ ДОСКА ОБЪЯВЛЕНИЙ (РАБОТАЕТ НА ВСЕХ УСТРОЙСТВАХ) -->
+<!-- ====================================================================== -->
+<!-- ИСПРАВЛЕННАЯ ДОСКА ОБЪЯВЛЕНИЙ (БЕЗ ОШИБОК В СКРИПТЕ) -->
 <!-- ====================================================================== -->
 <div class="gvardia-board-section">
-    <!-- Обычная кнопка вместо текста: на неё гарантированно нажмет любой телефон -->
     <button type="button" onclick="toggleGvardiaPanel()" style="width: 100%; background: none; border: none; color: #FFD700; text-transform: uppercase; font-size: 18px; text-align: center; margin-bottom: 15px; letter-spacing: 1px; cursor: pointer; font-weight: bold; font-family: sans-serif;">
         📌 Доска объявлений командующего
     </button>
     
-    <!-- Панель управления (переключается через обычный класс в CSS) -->
     <div class="gvardia-board-admin" id="gvardiaPanel" style="display: none;">
         <input type="password" id="gvardiaPin" placeholder="ПИН-код для публикации">
         <textarea id="gvardiaText" placeholder="Текст нового объявления..." rows="2" style="margin-top: 8px; margin-bottom: 8px;"></textarea>
@@ -347,10 +345,8 @@
 </div>
 
 <script>
-    // Ваш неизменный ПИН-код
     const G_MASTER_PIN = "1690"; 
 
-    // Простое и безотказное открытие/закрытие панели управления
     function toggleGvardiaPanel() {
         const panel = document.getElementById('gvardiaPanel');
         if (panel) {
@@ -363,7 +359,6 @@
         }
     }
 
-    // Горячие клавиши для ПК (Ctrl + Shift + Y)
     window.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
             e.preventDefault();
@@ -371,7 +366,6 @@
         }
     });
 
-    // Функция публикации объявления
     function addGvardiaNotice() {
         const pin = document.getElementById('gvardiaPin');
         const text = document.getElementById('gvardiaText');
@@ -386,7 +380,6 @@
             return;
         }
 
-        // Сохраняем локально в браузер устройства
         const list = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
         list.unshift({ 
             id: Date.now(), 
@@ -399,7 +392,6 @@
         drawGvardiaNotices();
     }
 
-    // Функция отрисовки карточек на деревянной доске
     function drawGvardiaNotices() {
         const board = document.getElementById('gvardiaSurface');
         if (!board) return;
@@ -407,7 +399,6 @@
         const list = JSON.parse(localStorage.getItem('gvardia_notices_list')) || [];
         const panel = document.getElementById('gvardiaPanel');
         
-        // Очищаем доску перед выводом
         board.innerHTML = '';
 
         if (list.length === 0) {
@@ -419,11 +410,10 @@
             const card = document.createElement('div');
             card.className = 'gvardia-notice';
             
-            // Защищенный вывод текста для избежания багов верстки
             const textDiv = document.createElement('div');
             textDiv.className = 'gvardia-notice-text';
             textDiv.textContent = item.text;
-            card.appendChild(textBlock);
+            card.appendChild(textDiv);
 
             const footer = document.createElement('div');
             footer.className = 'gvardia-notice-footer';
@@ -432,7 +422,6 @@
             dateDiv.textContent = item.date;
             footer.appendChild(dateDiv);
             
-            // Кнопка «Снять» активна только когда открыта панель управления
             if (panel && panel.style.display === 'block') {
                 const btn = document.createElement('button');
                 btn.className = 'gvardia-notice-del';
@@ -456,10 +445,10 @@
         });
     }
 
-    // Вызываем отрисовку доски сразу при загрузке страницы
+    // Принудительный вызов отрисовки сразу после загрузки скрипта
     drawGvardiaNotices();
 
-    // Ваши оригинальные функции сайта
+    // Оригинальные функции сайта
     function startSite() {
         const audio = document.getElementById("bgMusic");
         if (audio) audio.play(); 
