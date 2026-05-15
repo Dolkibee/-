@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <title>Лейб-Гвардия Великого Донского Войска</title>
     <style>
-
-Ивент 20.05.2026 в нашем ДС Лейб-Гвардии "Знакомство з Казаками"
- 
-
         /* Стили для плавного увеличения кнопок при наведении */
         .btn-link {
             transition: transform 0.2s ease, box-shadow 0.2s ease !important;
@@ -41,10 +37,10 @@
         }
         
         .animated-img:hover {
-            animation: none; /* Останавливаем пульсацию при наведении, чтобы включить максимальный фокус */
+            animation: none;
             transform: scale(1.04);
             border-color: #FFFFFF !important;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9) !important; /* Мощный золотой взрыв */
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9) !important;
         }
 
         /* Стили для карточек командного состава */
@@ -72,22 +68,147 @@
             margin-bottom: 10px;
             object-fit: cover;
         }
+
+        /* СТИЛИ НАСТОЯЩЕЙ ДЕРЕВЯННОЙ ДОСКИ ОБЪЯВЛЕНИЙ */
+        .gvardia-board-section {
+            max-width: 650px;
+            width: 90%;
+            margin: 50px auto;
+            font-family: 'Segoe UI', sans-serif;
+            box-sizing: border-box;
+            clear: both;
+        }
+        .gvardia-board-title {
+            color: #FFD700;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            font-weight: bold;
+        }
+        .gvardia-board-admin {
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #ff3333;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .gvardia-board-admin input, .gvardia-board-admin textarea {
+            background: #111;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .gvardia-board-admin button {
+            background: #ff3333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: uppercase;
+            width: 100%;
+        }
+        .gvardia-board-surface {
+            background-color: #24140a;
+            background-image: linear-gradient(90deg, transparent 49%, rgba(0,0,0,0.4) 50%, transparent 51%), linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 70px 100%, 100% 3px;
+            border: 12px solid #140b05;
+            outline: 2px solid #ff3333;
+            border-radius: 4px;
+            min-height: 200px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-content: flex-start;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        .gvardia-notice {
+            background: #FFD700;
+            color: #000 !important;
+            padding: 12px;
+            width: 160px;
+            min-height: 140px;
+            box-sizing: border-box;
+            border-left: 4px solid #ff3333;
+            transform: rotate(1deg);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+        }
+        .gvardia-notice:nth-child(even) {
+            background: #ff3333;
+            color: #fff !important;
+            border-left: 4px solid #FFD700;
+            transform: rotate(-1deg);
+        }
+        .gvardia-notice::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: #111;
+            border-radius: 50%;
+        }
+        .gvardia-notice-text {
+            font-size: 13px;
+            font-weight: bold;
+            word-break: break-word;
+            white-space: pre-wrap;
+            text-align: left;
+            line-height: 1.3;
+        }
+        .gvardia-notice-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            margin-top: 8px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 4px;
+        }
+        .gvardia-notice:nth-child(even) .gvardia-notice-footer {
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .gvardia-notice-del {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 2px 5px;
+            cursor: pointer;
+            border-radius: 2px;
+            font-size: 9px;
+        }
     </style>
 </head>
 <body style="background: radial-gradient(circle, #8B0000 0%, #3A0000 100%); min-height: 100vh; margin: 0; font-family: sans-serif; text-align: center; padding: 20px; padding-top: 55px; padding-bottom: 60px; color: #FFFFFF;">
     
-    <!-- БЕГУЩАЯ СТРОКА НОВОСТЕЙ (В самом верху страницы) -->
+    <!-- БЕГУЩАЯ СТРОКА НОВОСТЕЙ -->
     <div style="position: fixed; top: 0; left: 0; width: 100%; background: #4A0000; border-bottom: 2px solid #FFD700; padding: 6px 0; font-weight: bold; color: #FFD700; font-size: 14px; z-index: 9999; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.5);">
         <marquee scrollamount="5" behavior="scroll" direction="left">
-            [НОВОСТИ ВОЙСКА]: Открыт официальный набор в Лейб-Гвардию! 20.05.2026 18:00 по мск будет проведен ивент "Знакомство С Казаками" в нашем дс канале Лейб Гвардии
+            [НОВОСТИ ВОЙСКА]: Открыт official набор в Лейб-Гвардию! 20.05.2026 18:00 по мск будет проведен ивент "Знакомство С Казаками" в нашем дс канале Лейб Гвардии
         </marquee>
-    </div>
-
-    <!-- Экран приветствия -->
-    <div id="welcome-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(25, 0, 0, 0.95); z-index: 10000; display: flex; justify-content: center; align-items: center; flex-direction: column; color: white;">
-        <h1 style="color: #FFD700; text-shadow: 0 2px 4px rgba(0,0,0,0.6);">Лейб-Гвардия Великого Донского Войска</h1>
-        <button onclick="startSite()" style="padding: 15px 40px; font-size: 20px; cursor: pointer; background: #FFD700; color: #3A0000; border: none; border-radius: 10px; font-weight: bold; box-shadow: 0 0 20px rgba(255,215,0,0.5);">Войти на сайт</button>
-        <p style="margin-top: 15px; opacity: 0.7;">(включится музыкальное сопровождение)</p>
     </div>
 
     <!-- Заголовок -->
@@ -95,7 +216,7 @@
     
     <!-- Описание фракции -->
     <p style="max-width: 800px; margin: 20px auto; text-align: left; background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; border: 1px solid #FFD700; line-height: 1.6; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
-        <b style="color: #FFD700; font-size: 1.1em;">Про нас:</b> Полк сформирован царём Петром 1 в 1690 году из потешных села Преображенского, от которого и получил своё наименование, старшинство установлено с 1683 года. В 1692 году полковником (полковым командиром) Преображенского полка назначен Ю. фон Мендег, при этом А. М. Голивин стал генерал-майором и объединил командование всеми «потешными»(то есть ещё и Семеновским полком), так был сформирован Лейб-Гвардии Полк.
+        <b style="color: #FFD700; font-size: 1.1em;">Про нас:</b> Полк сформирован царём Петром 1 in 1690 году из потешных села Преображенского, от которого и получил своё наименование, старшинство установлено с 1683 года. В 1692 году полковником (полковым командиром) Преображенского полка назначен Ю. фон Мендег, при этом А. М. Голивин стал генерал-майором и объединил командование всеми «потешными»(то есть ещё и Семеновским полком), так был сформирован Лейб-Гвардии Полк.
     </p>
 
     <br>
@@ -103,118 +224,17 @@
     <img src="orig.jpg" width="500" alt="Изображение полка" class="animated-img" style="border-radius: 10px; border: 2px solid #FFD700;">
     <br>
 
-    <!-- Плеер -->
-    <audio id="bgMusic" src="Wehrmacht_Prusskij_marsh_-_Koenigraetzer_Marsch_Marsh_Lejb-gvardii_konnoj_artillerii_(TheMP3.Info).mp3" loop controls style="margin: 20px 0; font-weight: bold;"></audio>
+    <!-- Плеер (Автоматически начинает играть на сайте) -->
+    <audio id="bgMusic" src="Wehrmacht_Prusskij_marsh_-_Koenigraetzer_Marsch_Marsh_Lejb-gvardii_konnoj_artillerii_(TheMP3.Info).mp3" autoplay loop controls style="margin: 20px 0; font-weight: bold;"></audio>
 
     <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">Как вступить к нам</h2>
     <p style="color: #E0E0E0;">Перейти по ссылкам ниже:</p>
 
-
-<!-- ДОСКА ОБЪЯВЛЕНИЙ -->
-<!-- ДОСКА ОБЪЯВЛЕНИЙ -->
-<div class="wood-board-section">
-    <!-- Двойной клик/тач по этому заголовку откроет панель и на ПК, и на телефоне -->
-    <div class="wood-board-title" ondblclick="toggleAdminPanel()" style="cursor: pointer; user-select: none;">
-        📌 Доска объявлений командующего
-    </div>
-    
-    <!-- Панель управления, скрыта по умолчанию -->
-    <div class="wood-board-admin" id="adminPanel" style="display: none;">
-        <input type="password" id="boardPin" placeholder="ПИН-код для публикации" oninput="showNotices()">
-        <textarea id="boardText" placeholder="Текст нового объявления..." rows="2"></textarea>
-        <button onclick="addNotice()">Опубликовать</button>
-    </div>
-    
-    <div class="wood-board-surface" id="boardSurface"></div>
-</div>
-
-<script>
-    const MASTER_PIN = "1690"; // Ваш секретный ПИН-код
-
-    // Функция открытия/закрытия панели (работает везде)
-    function toggleAdminPanel() {
-        const panel = document.getElementById('adminPanel');
-        if (panel) {
-            if (panel.style.display === 'flex') {
-                panel.style.display = 'none';
-            } else {
-                panel.style.display = 'flex';
-            }
-            showNotices(); 
-        }
-    }
-
-    // Сохраняем поддержку комбинации клавиш Ctrl + Shift + Y для ПК
-    window.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
-            e.preventDefault();
-            toggleAdminPanel();
-        }
-    });
-
-    // Инициализация доски при загрузке страницы
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", showNotices);
-    } else {
-        showNotices();
-    }
-
-    function addNotice() {
-        const pin = document.getElementById('boardPin');
-        const text = document.getElementById('boardText');
-        if (!pin || !text) return;
-        if (pin.value !== MASTER_PIN) { alert("Доступ закрыт!"); return; }
-        if (text.value.trim() === "") return;
-
-        const list = JSON.parse(localStorage.getItem('commander_notices')) || [];
-        list.unshift({ id: Date.now(), text: text.value, date: new Date().toLocaleDateString('ru-RU') });
+    <!-- БЛОК ССЫЛОК -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px; margin: 0 auto; padding: 10px;">
         
-        localStorage.setItem('commander_notices', JSON.stringify(list));
-        text.value = '';
-        showNotices();
-    }
-
-    function showNotices() {
-        const board = document.getElementById('boardSurface');
-        if (!board) return;
-        
-        const list = JSON.parse(localStorage.getItem('commander_notices')) || [];
-        const pinInp = document.getElementById('boardPin');
-        const currentPin = pinInp ? pinInp.value : '';
-        
-        board.innerHTML = list.length === 0 ? '<div style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:20px;width:100%;text-align:center;">Нет объявлений</div>' : '';
-
-        list.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'wood-notice';
-            card.innerHTML = '<div class="wood-notice-text"></div><div class="wood-notice-footer"><div></div></div>';
-            card.querySelector('.wood-notice-text').textContent = item.text;
-            card.querySelector('.wood-notice-footer div').textContent = item.date;
-            
-            const panel = document.getElementById('adminPanel');
-            if (panel && panel.style.display === 'flex') {
-                const btn = document.createElement('button');
-                btn.className = 'wood-notice-del';
-                btn.textContent = 'Снять';
-                btn.onclick = () => {
-                    const checkPin = prompt("Введите ПИН-код для подтверждения удаления:");
-                    if (checkPin === MASTER_PIN) {
-                        let currentList = JSON.parse(localStorage.getItem('commander_notices')) || [];
-                        currentList = currentList.filter(n => n.id !== item.id);
-                        localStorage.setItem('commander_notices', JSON.stringify(currentList));
-                        showNotices();
-                    } else {
-                        alert("Неверный ПИН-код! Объявление не удалено.");
-                    }
-                };
-                card.querySelector('.wood-notice-footer').appendChild(btn);
-            }
-            board.appendChild(card);
-        });
-    }
-</script>
-
-
+        <!-- Roblox Группа Донской Армии -->
+        <a href="https://roblox.com" target="_blank" class="btn-link" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; background-color: #0E2954; color: #FFFFFF; text-decoration: none; border-radius: 8px; min-width: 220px; border: 2px solid #FFD700; box-shadow: 0 4px 6px rgba(0,0,0,0.4);">
     <!-- ВАШ БЛОК ССЫЛОК БЕЗ ИЗМЕНЕНИЙ -->
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; max-width: 900px; margin: 0 auto; padding: 10px;">
         
@@ -265,7 +285,6 @@
             </div>
         </a>
     </div>
-
     <!-- Блок анкеты -->
     <div style="background: rgba(255, 255, 255, 0.95); max-width: 600px; margin: 30px auto; padding: 20px; border-radius: 15px; text-align: left; border: 2px solid #FFD700; box-shadow: 0 6px 20px rgba(0,0,0,0.5); color: #333333;">
         <h3 style="margin-top: 0; text-align: center; color: #3A0000; font-size: 20px;">Анкета для вступления</h3>
@@ -274,8 +293,8 @@
 Готовы ли вы активить на постоянной основе?
 Готовы ли вы быть верным Всевеликому Войску Донскому до самого конца? :
 Какое у вас устройство:
-Есть ли у вас микрофон:
-Состояли/состоите  ли вы в похожих фракциях?:
+Есть ли у вас microфон:
+Состояли/состоите ли вы в похожих фракциях?:
 зашли ли вы в группы? (И В ДОНСКОЕ ВОЙСКО И ВО ВСЮР) скрин с подтверждением)
 Как вы о нас узнали о нас:
 Пинг офицера: @Epix (@couiuy11)</div>
@@ -283,7 +302,7 @@
         <p style="margin-top: 20px; text-align: center; color: #666; font-style: italic;">По вопросам писать тем, кто вас пригласил</p>
     </div>
 
-    <!-- БЛОК: ШТАБ КОМАНДОВАНИЯ СНИЗУ -->
+    <!-- ШТАБ КОМАНДОВАНИЯ -->
     <h2 style="color: #FFD700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); margin-top: 40px;">Штаб Командования</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 900px; margin: 20px auto; padding: 10px;">
         
@@ -307,7 +326,6 @@
             <div style="font-weight: bold; color: #FFD700; font-size: 16px;">Dolki_bee</div>
             <div style="font-size: 13px; color: #E0E0E0; margin-top: 5px; font-style: italic;">Создатель сайта</div>
         </div>
-
     </div>
 
     <!-- Копирайт -->
@@ -318,18 +336,111 @@
     <!-- Нижнее изображение -->
     <img src="RobloxScreenShot20260515_183507712.png" width="500" alt="Изображение" class="animated-img" style="border-radius: 10px; margin-top: 20px; border: 2px solid #FFD700;">
 
-    <script>
-        function startSite() {
-            const audio = document.getElementById("bgMusic");
-            audio.play(); 
-            document.getElementById("welcome-screen").style.display = "none"; 
-        }
 
-        function copyAnketa() {
-            const text = document.getElementById("anketa-text").innerText;
-            navigator.clipboard.writeText(text);
-            alert("Анкета скопирована!");
+   <!-- ДОСКА ОБЪЯВЛЕНИЙ -->
+<div class="gvardia-board-section">
+    <!-- Теперь панель открывается обычным одиночным кликом/тачем -->
+    <div class="gvardia-board-title" onclick="toggleGvardiaPanel()">
+        📌 Доска объявлений командующего
+    </div>
+    
+    <div class="gvardia-board-admin" id="gvardiaPanel">
+        <input type="password" id="gvardiaPin" placeholder="ПИН-код для публикации" oninput="drawGvardiaNotices()">
+        <textarea id="gvardiaText" placeholder="Текст нового объявления..." rows="2" style="margin-top: 8px; margin-bottom: 8px;"></textarea>
+        <button onclick="addGvardiaNotice()">Опубликовать приказ</button>
+    </div>
+    
+    <div class="gvardia-board-surface" id="gvardiaSurface">Загрузка...</div>
+</div>
+
+<script>
+    const G_MASTER_PIN = "1690"; 
+    const G_DB_URL = "https://kvdb.io"; 
+
+    let gvardiaNotices = [];
+
+    // Переключение панели по обычному клику
+    function toggleGvardiaPanel() {
+        const panel = document.getElementById('gvardiaPanel');
+        if (panel) {
+            panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+            drawGvardiaNotices(); 
         }
-    </script>
-</body>
-</html>
+    }
+
+    // Поддержка горячих клавиш Ctrl + Shift + Y для ПК
+    window.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && e.code === 'KeyY') {
+            e.preventDefault();
+            toggleGvardiaPanel();
+        }
+    });
+
+    async function loadGvardiaDB() {
+        try {
+            const response = await fetch(G_DB_URL);
+            if (response.ok) { gvardiaNotices = await response.json(); } 
+            else { gvardiaNotices = []; }
+        } catch (err) { gvardiaNotices = []; }
+        drawGvardiaNotices();
+    }
+
+    async function saveGvardiaDB(data) {
+        try {
+            await fetch(G_DB_URL, { method: 'POST', body: JSON.stringify(data) });
+        } catch (err) { alert("Ошибка синхронизации с облаком!"); }
+    }
+
+    // Инициализация при загрузке
+    loadGvardiaDB();
+
+    async function addGvardiaNotice() {
+        const pin = document.getElementById('gvardiaPin');
+        const text = document.getElementById('gvardiaText');
+        if (!pin || !text) return;
+        if (pin.value !== G_MASTER_PIN) { alert("Доступ закрыт!"); return; }
+        if (text.value.trim() === "") return;
+
+        gvardiaNotices.unshift({ id: Date.now(), text: text.value, date: new Date().toLocaleDateString('ru-RU') });
+        text.value = '';
+        drawGvardiaNotices();
+        await saveGvardiaDB(gvardiaNotices);
+    }
+
+    function drawGvardiaNotices() {
+        const board = document.getElementById('gvardiaSurface');
+        if (!board) return;
+        
+        const pinInp = document.getElementById('gvardiaPin');
+        const currentPin = pinInp ? pinInp.value : '';
+        
+        board.innerHTML = gvardiaNotices.length === 0 ? '<div style="color:rgba(255,255,255,0.2);font-size:11px;margin-top:20px;width:100%;text-align:center;">Нет объявлений</div>' : '';
+
+        gvardiaNotices.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'gvardia-notice';
+            card.innerHTML = '<div class="gvardia-notice-text"></div><div class="gvardia-notice-footer"><div></div></div>';
+            card.querySelector('.gvardia-notice-text').textContent = item.text;
+            card.querySelector('.gvardia-notice-footer div').textContent = item.date;
+            
+            const panel = document.getElementById('gvardiaPanel');
+            if (panel && panel.style.display === 'flex') {
+                const btn = document.createElement('button');
+                btn.className = 'gvardia-notice-del';
+                btn.textContent = 'Снять';
+                btn.onclick = async () => {
+                    const checkPin = prompt("Введите ПИН-код для подтверждения удаления:");
+                    if (checkPin === G_MASTER_PIN) {
+                        gvardiaNotices = gvardiaNotices.filter(n => n.id !== item.id);
+                        drawGvardiaNotices();
+                        await saveGvardiaDB(gvardiaNotices);
+                    } else {
+                        alert("Неверный ПИН-код!");
+                    }
+                };
+                card.querySelector('.gvardia-notice-footer').appendChild(btn);
+            }
+            board.appendChild(card);
+        });
+    }
+</script>
